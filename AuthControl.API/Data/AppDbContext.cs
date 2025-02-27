@@ -1,4 +1,4 @@
-﻿using AuthControl.API.Models;
+﻿using AuthControl.API.Entitites;
 using Microsoft.EntityFrameworkCore;
 
 namespace AuthControl.API.Data
@@ -9,13 +9,13 @@ namespace AuthControl.API.Data
         {
         }
 
-        public DbSet<Models.User> Users { get; set; }
-        public DbSet<Models.Role> Roles { get; set; }
+        public DbSet<Entitites.UserEntity> Users { get; set; }
+        public DbSet<Entitites.RoleEntity> Roles { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
+            modelBuilder.Entity<UserEntity>()
                 .HasOne(u => u.Role)
-                .WithMany(r => r.Users)
+                .WithMany()
                 .HasForeignKey(u => u.RoleId);
 
             base.OnModelCreating(modelBuilder);
