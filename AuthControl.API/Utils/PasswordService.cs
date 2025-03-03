@@ -16,5 +16,14 @@ namespace AuthControl.API.Utils
                 Hash = Convert.ToBase64String(hmac.ComputeHash(Encoding.UTF8.GetBytes(password)))
             };
         }
+
+        public static bool VerifyPassword(string password, PasswordServiceDTO dto)
+        {
+            using var hmac = new HMACSHA256(Convert.FromBase64String(dto.Salt));
+
+            var computedHas = Convert.ToBase64String(hmac.ComputeHash(Encoding.UTF8.GetBytes(password)));
+            
+            return computedHas == dto.Hash;
+        }
     }
 }

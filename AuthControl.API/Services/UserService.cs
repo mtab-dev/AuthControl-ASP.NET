@@ -10,12 +10,12 @@ namespace AuthControl.API.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _repository;
-        private readonly IPasswordHasher _passwordHasher;
+        private readonly IJwtHelper _jwtHelper;
 
-        public UserService(IUserRepository repository, IPasswordHasher passwordHasher)
+        public UserService(IUserRepository repository, IJwtHelper jwtHelper)
         {
             _repository = repository;
-            _passwordHasher = passwordHasher;
+            _jwtHelper = jwtHelper;
         }
 
         public async Task<UserEntity> CreateUserAsync(CreateUserDTO user)
@@ -38,6 +38,19 @@ namespace AuthControl.API.Services
             return await _repository.CreateUser(newUser);
         }
 
+        public async Task<LoginResponseDTO> Login(LoginDTO login)
+        {
+            var user = await _repository.Login(login.Username, login.Password);
+            var token = _jwtHelper.GenerateToken(user);
+            return new LoginResponseDTO
+            {
+                Message = "Login successful",
+                Token = token,
+                StatusCode = 200
+            };
+        }
+
+
         public Task<UserEntity> DeleteUserAsync(string username)
         {
             throw new NotImplementedException();
@@ -58,10 +71,6 @@ namespace AuthControl.API.Services
             throw new NotImplementedException();
         }
 
-        public Task<UserEntity> Login(LoginDTO login)
-        {
-            throw new NotImplementedException();
-        }
 
         public Task<UserEntity> UpdateUserAsync(UserEntity user)
         {

@@ -7,6 +7,7 @@ using AuthControl.API.Abstractions;
 using AuthControl.API.Services;
 using AuthControl.API.Repositories;
 using Microsoft.AspNet.Identity;
+using AuthControl.API.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+builder.Services.AddScoped<IJwtHelper, JwtHelper>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {

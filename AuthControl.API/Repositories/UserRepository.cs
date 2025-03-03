@@ -1,6 +1,9 @@
 ﻿using AuthControl.API.Abstractions;
 using AuthControl.API.Data;
+using AuthControl.API.DTO;
 using AuthControl.API.Entitites;
+using AuthControl.API.Utils;
+using Microsoft.EntityFrameworkCore;
 
 namespace AuthControl.API.Repositories
 {
@@ -41,9 +44,20 @@ namespace AuthControl.API.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<UserEntity> Login(string username, string password)
+        public async Task<UserEntity> Login(string username, string password)
         {
-            throw new NotImplementedException();
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == username);
+
+            var isValidPassword = PasswordService.VerifyPassword(password, new PasswordServiceDTO
+            {
+                Hash = user.PasswordHash,
+                Salt = user.PasswordSalt
+            });
+
+            user.PasswordHash = string.Empty;
+            user.PasswordSalt = string.Empty;
+
+            return user;
         }
 
         public Task<UserEntity> UpdateUserAsync(UserEntity user)
