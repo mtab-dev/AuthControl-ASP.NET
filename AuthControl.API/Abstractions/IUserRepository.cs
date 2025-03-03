@@ -1,17 +1,16 @@
-﻿using AuthControl.API.DTO;
-using AuthControl.API.Entitites;
-using Microsoft.AspNetCore.Mvc;
+﻿using AuthControl.API.Entitites;
+using System.Runtime.InteropServices;
 
 namespace AuthControl.API.Abstractions
 {
-    public interface IUserService
+    public interface IUserRepository
     {
-        Task<UserEntity> CreateUserAsync(CreateUserDTO user);
+        Task<UserEntity> CreateUser(UserEntity user);
         Task<UserEntity> DeleteUserAsync(string username);
         Task<UserEntity> UpdateUserAsync(UserEntity user);
         Task<UserEntity> GetUserByIdAsync(int id);
         Task<UserEntity> GetUserByEmailAsync(string email);
         Task<UserEntity> GetAllUsers();
-        Task<UserEntity> Login(LoginDTO login);
+        Task<UserEntity> Login(string username, string password);
     }
 }
