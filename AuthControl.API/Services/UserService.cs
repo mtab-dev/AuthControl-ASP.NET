@@ -1,6 +1,7 @@
 ﻿using AuthControl.API.Abstractions;
 using AuthControl.API.DTO;
 using AuthControl.API.Entitites;
+using AuthControl.API.Entitites.Enums;
 using AuthControl.API.Utils;
 using Microsoft.AspNet.Identity;
 
@@ -20,7 +21,7 @@ namespace AuthControl.API.Services
         public async Task<UserEntity> CreateUserAsync(CreateUserDTO user)
         {
             string username = GenerateUsername.Run(user.Name);
-            string hashedPassword = _passwordHasher.HashPassword(user.Password);
+            var password = PasswordService.CreateHash(user.Password);   
 
             var newUser = new UserEntity
             {
@@ -28,9 +29,10 @@ namespace AuthControl.API.Services
                 UserName = username,
                 Name = user.Name,
                 Email = user.Email,
-                Password = hashedPassword,
+                PasswordHash = password.Hash,
+                PasswordSalt = password.Salt,
                 BirthDate = DateTime.Parse(user.BirthDate),
-                Role = "Client"
+                Role = UserRole.Client
             };
 
             return await _repository.CreateUser(newUser);
