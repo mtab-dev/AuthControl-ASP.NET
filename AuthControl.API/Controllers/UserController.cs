@@ -44,14 +44,14 @@ namespace AuthControl.API.Controllers
             return Ok(updatedUser);
         }
 
-        [HttpGet("get/{id}")]
-        public async Task<IActionResult> GetUserById(int id)
+        [HttpGet("get/id={id}")]
+        public async Task<IActionResult> GetUserById(Guid id)
         {
             var user = await _userService.GetUserByIdAsync(id);
             return Ok(user);
         }
 
-        [HttpGet("get/{email}")]
+        [HttpGet("get/email={email}")]
         public async Task<IActionResult> GetUserByEmail(string email)
         {
             var user = await _userService.GetUserByEmailAsync(email);
