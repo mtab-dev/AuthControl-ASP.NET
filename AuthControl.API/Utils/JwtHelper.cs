@@ -24,10 +24,10 @@ namespace AuthControl.API.Utils
         {
             var claims = new[]
             {
-                new Claim(ClaimTypes.Name, user.Name),
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.Role, user.Role.ToString())
+                new Claim("Name", user.Name),
+                new Claim("Email", user.Email),
+                new Claim("Username", user.UserName),
+                new Claim("Role", user.Role.ToString())
             };
 
             var token = new JwtSecurityToken(
