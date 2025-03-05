@@ -10,7 +10,7 @@ namespace AuthControl.API.Abstractions
         Task<UserEntity> UpdateUserAsync(UserEntity user);
         Task<UserEntity> GetUserByIdAsync(int id);
         Task<UserEntity> GetUserByEmailAsync(string email);
-        Task<UserEntity> GetAllUsers();
+        Task<List<UserEntity>> GetAllUsers();
         Task<UserEntity> Login(string username, string password);
     }
 }

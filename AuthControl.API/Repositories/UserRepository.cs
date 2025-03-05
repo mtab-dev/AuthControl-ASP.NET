@@ -29,9 +29,9 @@ namespace AuthControl.API.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<UserEntity> GetAllUsers()
+        public async Task<List<UserEntity>> GetAllUsers()
         {
-            throw new NotImplementedException();
+            return await _context.Users.ToListAsync();
         }
 
         public Task<UserEntity> GetUserByEmailAsync(string email)

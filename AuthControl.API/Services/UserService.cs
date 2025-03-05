@@ -56,9 +56,9 @@ namespace AuthControl.API.Services
             throw new NotImplementedException();
         }
 
-        public Task<UserEntity> GetAllUsers()
+        public Task<List<UserEntity>> GetAllUsers()
         {
-            throw new NotImplementedException();
+            return _repository.GetAllUsers();
         }
 
         public Task<UserEntity> GetUserByEmailAsync(string email)
