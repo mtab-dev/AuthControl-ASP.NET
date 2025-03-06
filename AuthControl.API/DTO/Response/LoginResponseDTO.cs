@@ -1,4 +1,4 @@
-﻿namespace AuthControl.API.DTO
+﻿namespace AuthControl.API.DTO.Response
 {
     public record LoginResponseDTO
     {

@@ -1,5 +1,5 @@
 ﻿using AuthControl.API.Abstractions;
-using AuthControl.API.DTO;
+using AuthControl.API.DTO.Request;
 using AuthControl.API.Entitites;
 using Microsoft.AspNetCore.Mvc;
 
