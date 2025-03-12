@@ -1,4 +1,4 @@
-﻿namespace AuthControl.API.DTO
+﻿namespace AuthControl.API.DTO.Application
 {
     public record PasswordServiceDTO
     {

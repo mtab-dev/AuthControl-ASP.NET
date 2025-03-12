@@ -1,4 +1,5 @@
-﻿using AuthControl.API.DTO;
+﻿using AuthControl.API.DTO.Request;
+using AuthControl.API.DTO.Response;
 using AuthControl.API.Entitites;
 
 namespace AuthControl.API.Abstractions

@@ -1,5 +1,6 @@
 ﻿using AuthControl.API.Abstractions;
-using AuthControl.API.DTO;
+using AuthControl.API.DTO.Request;
+using AuthControl.API.DTO.Response;
 using AuthControl.API.Entitites;
 using AuthControl.API.Entitites.Enums;
 using AuthControl.API.Utils;

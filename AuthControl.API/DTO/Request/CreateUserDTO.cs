@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AuthControl.API.DTO
+namespace AuthControl.API.DTO.Request
 {
     public record CreateUserDTO
     {

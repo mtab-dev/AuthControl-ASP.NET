@@ -1,4 +1,4 @@
-﻿using AuthControl.API.DTO;
+﻿using AuthControl.API.DTO.Application;
 using System.Security.Cryptography;
 using System.Text;
 
